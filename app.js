@@ -9,42 +9,42 @@ const path = require('path');
 const OUTPUT_DIR = path.resolve(__dirname, 'output');
 const outputPath = path.join(OUTPUT_DIR, 'team.html');
 
-const teamMembers = [];
+const teamArray = [];
 const idArray = [];
 
-const getQuestions = teamMember => [
+const askQuestion = teamMember => [
   {
     type: 'input',
     name: 'name',
-    message: `What is your ${teamMember}'s name?`
+    message: `What is the ${teamMember}'s name?`
   },
   {
     type: 'input',
     name: 'id',
-    message: `What is your ${teamMember}'s id?`
+    message: `What is the ${teamMember}'s id?`
   },
   {
     type: 'input',
     name: 'email',
-    message: `What is your ${teamMember}'s email?`
+    message: `What is the ${teamMember}'s email address?`
   }
 ];
 
-const teamMenu = () => {
-  const createManager = async () => {
+const team = () => {
+  const addManager = async () => {
     const response = await inquirer.prompt([
-      ...getQuestions('manager'),
+      ...askQuestion('manager'),
       {
         type: 'input',
         name: 'officeNumber',
-        message: "what is your manager's office number?"
+        message: "what is the manager's office number?"
       }
     ]);
 
     const { name, id, email, officeNumber } = response;
     const manager = new Manager(name, id, email, officeNumber);
 
-    teamMembers.push(manager);
+    teamArray.push(manager);
     idArray.push(id);
 
     createTeam();
@@ -52,18 +52,18 @@ const teamMenu = () => {
 
   const addEngineer = async () => {
     const response = await inquirer.prompt([
-      ...getQuestions('engineer'),
+      ...askQuestion('engineer'),
       {
         type: 'input',
         name: 'github',
-        message: "What is your engineer's GitHub username?"
+        message: "What is the engineer's GitHub username?"
       }
     ]);
 
     const { name, id, email, github } = response;
     const engineer = new Engineer(name, id, email, github);
 
-    teamMembers.push(engineer);
+    teamArray.push(engineer);
     idArray.push(id);
 
     createTeam();
@@ -71,18 +71,18 @@ const teamMenu = () => {
 
   const addIntern = async () => {
     const response = await inquirer.prompt([
-      ...getQuestions('intern'),
+      ...askQuestion('intern'),
       {
         type: 'input',
         name: 'school',
-        message: "What is your intern's school?"
+        message: "Where did the intern go to school?"
       }
     ]);
 
     const { name, id, email, school } = response;
     const intern = new Intern(name, id, email, school);
 
-    teamMembers.push(intern);
+    teamArray.push(intern);
     idArray.push(id);
 
     createTeam();
@@ -93,8 +93,8 @@ const teamMenu = () => {
       {
         type: 'list',
         name: 'userChoice',
-        message: 'Which type of team member would you like to add?',
-        choices: ['Engineer', 'Intern', "I don't want to add any more team members"]
+        message: 'Who would you like to add to your team?',
+        choices: ['Engineer', 'Intern', "My team is complete."]
       }
     ]);
 
@@ -108,12 +108,12 @@ const teamMenu = () => {
         break;
 
       default:
-        fs.writeFileSync(outputPath, render(teamMembers), 'utf-8');
+        fs.writeFileSync(outputPath, render(teamArray), 'utf-8');
         break;
     }
   };
 
-  createManager();
+  addManager();
 };
 
-teamMenu();
+team();
