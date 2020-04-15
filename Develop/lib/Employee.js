@@ -1,25 +1,26 @@
 // Employee class and get prompts
 class Employee {
-    constructor(name, id, email){
-        this.name = name;
-        this.id = id;
-        this.email = email;
-        this.title = "Employee"
-        
+    constructor(name, id, email) {
+      this.name = name;
+      this.id = id;
+      this.email = email;
     }
-    getName(){
-        return this.name;
+  
+    getName() {
+      return this.name;
     }
-    getId(){
-        return this.id;
+  
+    getId() {
+      return this.id;
     }
-    getEmail(){
-        return this.email;
+  
+    getEmail() {
+      return this.email;
     }
-    getRole(){
-        return this.title;
+  
+    getRole() {
+      return 'Employee';
     }
-}
-
-
-module.exports = Employee;
+  }
+  
+  module.exports = Employee;
