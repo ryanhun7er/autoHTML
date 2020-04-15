@@ -92,13 +92,13 @@ const teamMenu = () => {
     const response = await inquirer.prompt([
       {
         type: 'list',
-        name: 'memberChoice',
+        name: 'userChoice',
         message: 'Which type of team member would you like to add?',
         choices: ['Engineer', 'Intern', "I don't want to add any more team members"]
       }
     ]);
 
-    switch (response.memberChoice) {
+    switch (response.userChoice) {
       case 'Engineer':
         addEngineer();
         break;
