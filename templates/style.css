@@ -1,8 +1,21 @@
 body {
-    background-color: teal;
+    /* background: rgb(2,0,36); */
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.jumbotron {
+    background: whitesmoke;
+    color: rgba(9,9,121,1);
+    
+}
+.card-header {
+    background-color: rgb(61, 127, 172);
+    text-align: center;
+    color: white
 }
 
 .card {
-    background-color: tomato;
-    margin-left: 2rem;
+    margin-left: 1rem;
+    width: 15rem;
+    box-shadow: 0 0 8px 2px white;
 }
