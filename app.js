@@ -12,6 +12,7 @@ const outputPath = path.join(OUTPUT_DIR, 'team.html');
 const teamArray = [];
 const idArray = [];
 
+//question array for each role as chosen
 const askQuestion = teamMember => [
   {
     type: 'input',
@@ -30,7 +31,11 @@ const askQuestion = teamMember => [
   }
 ];
 
+// setup for prompts depending on role chosen
 const team = () => {
+
+  console.log("Welcome to your Team Roster Web Builder! Let's get started:");
+
   const addManager = async () => {
     const response = await inquirer.prompt([
       ...askQuestion('manager'),
@@ -88,17 +93,22 @@ const team = () => {
     createTeam();
   };
 
+//allows user to choose role. After role is chosen the switch runs to the const above
   const createTeam = async () => {
     const response = await inquirer.prompt([
       {
         type: 'list',
         name: 'userChoice',
         message: 'Who would you like to add to your team?',
-        choices: ['Engineer', 'Intern', "My team is complete."]
+        choices: ['Manager','Engineer', 'Intern', "My team is complete."]
       }
     ]);
 
     switch (response.userChoice) {
+      case 'Manager':
+        addManager();
+        break;
+
       case 'Engineer':
         addEngineer();
         break;
@@ -113,7 +123,7 @@ const team = () => {
     }
   };
 
-  addManager();
+  createTeam();
 };
 
 team();
