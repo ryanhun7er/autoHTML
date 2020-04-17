@@ -20,6 +20,7 @@
 * Type node app.js to begin the program
 * Follow the prompts
 * After you select 'My team is complete', an html will be created in the output folder.
+![gif](assets/teams.gif)
 
 ## License
 * MIT
